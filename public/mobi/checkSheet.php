@@ -14,12 +14,12 @@
                         <div class="p-2">
                             <ul class="apps-header-quick d-flex justify-content-between bd-highlight mb-2">
                                 <li class="p-2">
-                                    <a href="/">
+                                    <a href="/mobi/noti">
                                         <i class="bi bi-bell"></i>
                                     </a>
                                 </li>
                                 <li class="p-2">
-                                    <a href="/myinfo">
+                                    <a href="/mobi/myinfo">
                                         <i class="bi bi-person-bounding-box"></i>
                                     </a>
                                 </li>
@@ -196,7 +196,6 @@
                 console.log(data.token);
                 if(data.code == 200) {
                     alert('성공적으로 데이터가 전송되었습니다.');
-                    window.location.href = '/mobi/main';
                     return false;
                 } else if(data.code == 400) {
                     alert("데이터 등록에 실패하였습니다.\n담당선생님께 문의하세요.");
