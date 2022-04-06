@@ -3,6 +3,7 @@
 작성일: 2022년 04월 05일
 
 변경한 부분
+- 로그인시 토큰 저장구조 변경
 - 페이지 구조 변경
 - 레이아웃 변경
 - css framework 변경 (semantic ui => bootstrap)

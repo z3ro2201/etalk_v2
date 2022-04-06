@@ -27,11 +27,24 @@
     </div>
 </header>
 <section class="p-1">
+    <?if($userinfo['user_trustd'] == 0) { ?>
     <div class="card m-1 mt-3">
         <div class="rows text-dark p-4">
-            사용자인증을 완료해야 이 기능을 사용할 수 있습니다.
+            사용자확인이 필요합니다.<br/>
+            담당선생님께 문의해주세요.
         </div>
     </div>
+    <? } else {
+        $total = $db->query("SELECT COUNT(*) AS tot FROM covid19_notice WHERE (1)")->fetch_assoc();
+        $qry = $db->query("SELECT * FROM covid19_notice ORDER BY id DESC");
+        while($data = $qry->fetch_assoc()) {?>
+    <div class="card m-1 mt-3">
+        <div class="rows text-dark p-4">
+            <a href="/mobi/view?id=<?=$data['id'];?>"><?=$data['b_sbj'];?></a><br/>
+            <?=$data['b_regdate'];?>
+        </div>
+    </div>
+    <? } }?>
 </section>
 </div>
 <? include $_SERVER['DOCUMENT_ROOT']."/../components/__LoginFooter.php"; ?>
