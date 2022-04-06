@@ -28,6 +28,10 @@
                     </header>
                     <section class="p-1" id="sheetBody">
                         <form onsubmit="return chkSheet();">
+                        <input type="hidden" name="user_ssn" value="<?=$_SESSION['user_ssn'];?>"/>
+                        <input type="hidden" name="user_name" value="<?=$userinfo['user_name'];?>"/>
+                        <input type="hidden" name="user_schoolname" value="<?=$userinfo['user_schoolname'];?>"/>
+                        <input type="hidden" name="user_schoolcode" value="<?=$userinfo['user_schoolcode'];?>"/>
                         <div class="card m-1 p-2">
                             <div class="rows p-3 text-dark group" id="sheet1">
                                 <label for="exampleFormControlTextarea1" class="form-label d-block">
@@ -131,6 +135,7 @@
     }
 
     function chkSheet() {
+        let healthResult;
        if(!$('input:radio[name=chkQ1]').is(':checked')) {
            this.moveTo(1, $('.q1_question').text());
            return false;
@@ -152,7 +157,7 @@
                 else sheetQ2 = 1;
                 let sheetQ3 = $('input[name=chkQ3]:checked').val();
 
-                let healthResult = parseInt(sheetQ1)+parseInt(sheetQ2)+parseInt(sheetQ3);
+                healthResult = parseInt(sheetQ1)+parseInt(sheetQ2)+parseInt(sheetQ3);
 
                 $('#sheetBody').css('display', 'none');
                 $('#sheetOk').css('display', 'block');
@@ -171,6 +176,41 @@
                 return false;
             }
         }
+        let userinfo = {
+            'user_ssn' : $('input[name=user_ssn]').val(),
+            'username': $('input[name=user_name]').val(),
+            'schoolcode' : $('input[name=user_schoolcode]').val(),
+            'schoolname' : $('input[name=user_schoolname]').val(),
+            'q1': $('input[name=chkQ1]:checked').val(),
+            'q2': $('input[name=chkQ2]:checked').val(),
+            'q3': $('input[name=chkQ3]:checked').val(),
+            'val': healthResult
+        };
+
+        $.ajax({
+            type: 'POST',
+            data: userinfo,
+            dataType: 'json',
+            url: '/api/regHealthReport',
+            success:function(data) {
+                console.log(data.token);
+                if(data.code == 200) {
+                    alert('성공적으로 데이터가 전송되었습니다.');
+                    window.location.href = '/mobi/main';
+                    return false;
+                } else if(data.code == 400) {
+                    alert("데이터 등록에 실패하였습니다.\n담당선생님께 문의하세요.");
+                    return false;
+                } else {
+                    alert("데이터 등록에 실패하였습니다.\n담당선생님께 문의하세요.");
+                    return false;
+                }
+            }, error: function(err, data){
+                alert("서버에 문제가 발생하였습니다.\n담당선생님께 문의하세요.");
+                return false;
+            }
+        });
+
         return false;
         //return true;
     }
