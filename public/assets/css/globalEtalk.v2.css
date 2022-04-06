@@ -1,0 +1,51 @@
+html,
+body {
+  width:100%;
+  height:100%;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background:#111827;
+  color:#fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#__next{width:100%;height:100%;overflow:hidden;transform:scale(1)}
+
+.text-center{text-align:center;}
+.text-left{text-align:left}
+.text-right{text-align:right}
+.text-red{color:red}
+
+.group{border-bottom:1px solid #ccc}
+
+div.appsBody{width:100%;height:calc(100% - 65px);overflow:auto;padding:10px;}
+ul.apps-header-quick{margin:0;padding:0;list-style:none;}
+
+div.appsMenu{width:100%;height:65px;background:#fff;color:#000;overflow:hidden;}
+ul.appsMenu-body{margin:0;height:100%;overflow:hidden;padding:0;list-style:none}
+ul.appsMenu-body li{height:100%;overflow:hidden;text-align:center}
+ul.appsMenu-body li a{height:100%;overflow:hidden;display:block}
+span.menu-link-text{display:block;}
+
+#sheetBody {
+  display: block;
+}
+#sheetOk {
+  display: none;
+}
+
+.hidden-class{display:none}
+.z-index{position:absolute;z-index:9999;}
+.modal-backdrop{display:none;position:absolute;z-index:1;}
+
+.menu-a-text{display:block;}
