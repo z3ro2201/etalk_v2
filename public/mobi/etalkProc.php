@@ -5,6 +5,25 @@
     $jwt = new JWT();
 
     $setMode = $_POST['proc'];
+
+    if($setMode == 'newAccount') {
+        $name = $_POST['name'];
+        $sessid = $_POST['token'];
+        $secondspw = $_POST['passwords'];
+
+        $ssn = $db->query("SELECT * FROM chk_user WHERE sessid = '$sessid'")->fetch_assoc();
+        
+        $sql = "UPDATE chk_user SET user_passwd = SHA2('$secondspw', 512) WHERE sessid = '$sessid' AND user_ssn = '".$ssn['user_ssn']."'";
+        $result = $db->query($sql);
+
+        if(!$result) {
+            echo "<script>\nalert('서버에 문제가 발생하였습니다.\\n 지속적으로 발생할 경우 담당선생님꼐 문의하시기 바랍니다.')\nwindow.history.back(-1);\n</script>";
+            exit();
+        }
+
+        $_SESSION['user_ssn'] = $result['user_ssn'];
+        echo "<script>\nwindow.location.href=\"/mobi/login\";\n</script>";
+    }
     
     if($setMode == '2ndlogin') {
         $sessid = $_POST['token'];

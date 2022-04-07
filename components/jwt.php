@@ -30,8 +30,8 @@ class JWT
         $encode_header = base64_encode($header);
         $encode_payload = base64_encode($payload);
 
-        return $encode_header.".".$encode_payload.".".$signature;
-        //return base64_encode($header.'.'.$payload.'.'.$signature);
+        //return $encode_header.".".$encode_payload.".".$signature;
+        return base64_encode($header.'.'.$payload.'.'.$signature);
     }
 
     // JWT 해석

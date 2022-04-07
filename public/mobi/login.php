@@ -69,6 +69,7 @@
 
                     let userinfo = {
                         'username': $('input[name=txtUsername]').val(),
+                        'schoolname' : $('input[name=txtSchoolname]').val(),
                         'schoolcode' : $('input[name=school_code]').val()
                     };
 
@@ -82,14 +83,18 @@
                             if((data.code == 200) && (data.token != false)) {
                                 localStorage.setItem('JWT', data.token);
                                 location.href = "/mobi/userPassword";
-                            } else if((data.code == 200) && (data.token == false)) {
-                                alert('토큰서버에 문제가 발생하였습니다.\n이 문제가 계속 발생할 경우 선생님께 문의하세요.');
+                            } else if((data.code == 201) && (data.token != false)) {
+                                localStorage.setItem('JWT', data.token);
+                                location.href="regUserPassword.php";
                                 return false;
                             } else {
-                                
+                                alert('토큰 생성과정 중 서버에 문제가 발생하였습니다.\n담당 선생님께 문의하세요.(1)');
+                                return false;                                
                             }
                         }, error: function(err, data){
                             console.log(err);
+                            alert('토큰 생성과정 중 서버에 문제가 발생하였습니다.\n담당 선생님께 문의하세요.(2)\n' + err);
+                            return false;     
                         }
                     });
                 })
@@ -153,7 +158,7 @@
                         2. 학생성명<br/>
                         3. 접속IP<br/>
                         4. 접속단말종류(iOS, Android, Windows)<br/>
-                        5. 진단항목 및 진단일<br/>>
+                        5. 진단항목 및 진단일<br/>
                         <br/>
                         수집되는 정보는 목적 달성시 담당선생님에 의해 복구할 수 없도록 즉시 파기 됩니다.<br/>
                         만약 원치 않는 경우 본인의 의사에 따라 직접 삭제를 할 수 있습니다.
