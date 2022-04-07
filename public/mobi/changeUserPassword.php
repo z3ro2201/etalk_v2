@@ -1,4 +1,5 @@
 <?
+    include_once $_SERVER['DOCUMENT_ROOT']."/../components/dbconn.php";
     include $_SERVER['DOCUMENT_ROOT']."/../components/__Header.php";
 
     if($_SESSION['user_ssn'] == false) {

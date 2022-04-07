@@ -1,6 +1,6 @@
 <?
     include_once $_SERVER['DOCUMENT_ROOT']."/../components/dbconn.php";
-    include $_SERVER['DOCUMENT_ROOT']."/../components/__Header.php";
+    include_once $_SERVER['DOCUMENT_ROOT']."/../components/__Header.php";
 
     if($_SESSION['user_ssn'] == false) {
         @header('Location: /mobi/login');
@@ -30,6 +30,11 @@
     <div class="card m-1">
         <div class="rows p-4 text-dark">
             <a href="/mobi/logout">로그아웃</a>
+        </div>
+    </div>
+    <div class="card m-1">
+        <div class="rows p-4 text-dark">
+            <a href="/mobi/changeUserPassword">비밀번호 변경</a>
         </div>
     </div>
 </section>

@@ -39,7 +39,7 @@
             echo "<script>\nalert('서버에 문제가 발생하였습니다.\\n 지속적으로 발생할 경우 담당선생님꼐 문의하시기 바랍니다.')\nwindow.history.back(-1);\n</script>";
             exit();
         } 
-        echo "<script>\nalert('성공적으로 비밀번호가 변경되었습니다.')\nwindow.location.href=\"/mobi/\";\n</script>";
+        echo "<script>\nalert('성공적으로 비밀번호가 변경되었습니다.')\nwindow.location.href=\"/mobi/main\";\n</script>";
     }
     
     if($setMode == '2ndlogin') {
